@@ -1,0 +1,39 @@
+<div class="category-list-container">
+   <div class="list-header">
+    <h2>Category List</h2>
+    <button class="export-btn" (click)="exportToExcel()"><fa-icon [icon]="faFileExcel"></fa-icon>Export as Excel</button>
+  </div>
+   <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Category Name</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of pagedCategories; let i = index">
+        <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+        <td>{{ category.name }}</td>
+        <td>{{ category.description }}</td>
+        <td>{{ category.status }}</td>
+        <td class="action-buttons">
+          <button (click)="editCategory(category)" title="Edit">
+            <fa-icon [icon]="faEdit"></fa-icon>
+          </button>
+          <button (click)="deleteCategory(category)" title="Delete">
+            <fa-icon [icon]="faTrash"></fa-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button [disabled]="currentPage === 1" (click)="prevPage()">Previous</button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button [disabled]="currentPage === totalPages" (click)="nextPage()">Next</button>
+  </div>
+</div>

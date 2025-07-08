@@ -1,0 +1,60 @@
+<nav>
+  <ul>
+    <li>
+      <a routerLink="/dashboard" routerLinkActive="active">
+        <fa-icon [icon]="faTachometerAlt"></fa-icon> Dashboard
+      </a>
+    </li>
+    <li>
+      <a routerLink="/users" routerLinkActive="active">
+        <fa-icon [icon]="faUsers"></fa-icon> Users
+      </a>
+    </li>
+    
+    <li>
+      <a routerLink="/settings" routerLinkActive="active">
+        <fa-icon [icon]="faCog"></fa-icon> Settings
+      </a>
+    </li>
+    <li>
+  <div (click)="toggleCategory()" class="parent-link">
+    <fa-icon [icon]="faFolder"></fa-icon> Category
+  </div>
+  <ul *ngIf="showCategory">
+    <li>
+      <a routerLink="/category/list" routerLinkActive="active">
+        <fa-icon [icon]="faList"></fa-icon> Category List
+      </a>
+    </li>
+    <li>
+      <a routerLink="/category/add" routerLinkActive="active">
+        <fa-icon [icon]="faPlus"></fa-icon> Add Category
+      </a>
+    </li>
+  </ul>
+</li>
+
+    <li>
+      <div (click)="toggleReports()" class="parent-link">
+        <fa-icon [icon]="faChartLine"></fa-icon> Reports
+      </div>
+      <ul *ngIf="showReports">
+        <li>
+          <a routerLink="/reports/sales" routerLinkActive="active">
+            <fa-icon [icon]="faDollarSign"></fa-icon> Sales Report
+          </a>
+        </li>
+        <li>
+          <a routerLink="/reports/user" routerLinkActive="active">
+            <fa-icon [icon]="faUser"></fa-icon> User Report
+          </a>
+        </li>
+        <li>
+          <a routerLink="/reports/financial" routerLinkActive="active">
+            <fa-icon [icon]="faFileInvoiceDollar"></fa-icon> Financial Report
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
