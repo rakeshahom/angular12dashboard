@@ -23,6 +23,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "file-saver": "^2.0.5",
     "rxjs": "~6.6.0",
+    "sweetalert2": "^11.22.2",
     "tslib": "^2.3.0",
     "xlsx": "^0.18.5",
     "zone.js": "~0.11.4"

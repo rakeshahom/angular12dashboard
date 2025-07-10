@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { CategoryService } from 'src/app/services/category.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-category',
@@ -6,8 +9,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-category.component.css']
 })
 export class AddCategoryComponent implements OnInit {
+ 
 
-  constructor() { }
+  constructor(private categoryService: CategoryService) {}
+
   category = {
     name: '',
     description: '',
@@ -16,15 +21,38 @@ export class AddCategoryComponent implements OnInit {
   };
   ngOnInit(): void {
   }
-  onSubmit(form: any) {
-    if (form.valid) {
-      console.log('Category Data:', this.category);
-      // API call ya service yahan likh sakte ho
-      alert('Category Added Successfully!');
-      form.resetForm();
-    } else {
-      console.log('Form Invalid');
+   onSubmit(form: NgForm) {
+    if (form.invalid) {
+      return;
     }
+
+    // ✅ Dummy call
+    this.categoryService.createCategory(this.category).subscribe({
+      next: (response) => {
+        console.log('API Response:', response);
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Category Created!',
+          text: response.message || 'New category added.',
+          timer: 5000,
+          showConfirmButton: false
+        });
+
+        form.resetForm();
+      },
+      error: (error) => {
+        console.error('Error:', error);
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops!',
+          text: 'Something went wrong!',
+          timer: 3000,
+          showConfirmButton: false
+        });
+      }
+    });
   }
 }
 

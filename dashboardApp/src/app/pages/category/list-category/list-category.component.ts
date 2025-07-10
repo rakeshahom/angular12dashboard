@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { faEdit, faTrash ,faFileExcel} from '@fortawesome/free-solid-svg-icons';
 import * as XLSX from 'xlsx';
 import * as FileSaver from 'file-saver';
-
+import Swal from 'sweetalert2';
+import { CategoryService } from 'src/app/services/category.service';
 
 interface Category {
   id: number;
@@ -19,9 +20,17 @@ export class ListCategoryComponent implements OnInit {
  faEdit = faEdit;
   faTrash = faTrash;
   faFileExcel=faFileExcel;
-  constructor() { }
+
+
+  constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
+     this.loadCategories();
+  }
+  loadCategories() {
+    this.categoryService.getAllCategories().subscribe(data => {
+      this.categories = data;
+    });
   }
  categories: Category[] = [
     { id: 1, name: 'Electronics', description: 'Electronic items', status: 'Active' },
@@ -66,11 +75,39 @@ export class ListCategoryComponent implements OnInit {
     // TODO: Navigate to edit form
   }
 
-  deleteCategory(category: Category) {
-    if (confirm(`Are you sure to delete ${category.name}?`)) {
-      this.categories = this.categories.filter(c => c.id !== category.id);
+ deleteCategory(category: Category) {
+  Swal.fire({
+    title: `Are you sure you want to delete "${category.name}"?`,
+    text: "This action cannot be undone!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'Cancel'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // ✅ Service se DELETE request bhejo
+      this.categoryService.deleteCategory(category.id).subscribe({
+        next: () => {
+          // ✅ Local list se bhi hatao
+          this.categories = this.categories.filter(c => c.id !== category.id);
+
+          Swal.fire({
+            title: 'Deleted!',
+            text: `"${category.name}" has been deleted.`,
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false
+          });
+        },
+        error: (err: any) => {
+          console.error(err);
+          Swal.fire('Error', 'Something went wrong!', 'error');
+        }
+      });
     }
-  }
+  });
+}
+
   exportToExcel(): void {
   const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.categories);
   const workbook: XLSX.WorkBook = {

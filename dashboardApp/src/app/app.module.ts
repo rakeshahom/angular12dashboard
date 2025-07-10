@@ -20,6 +20,9 @@ import { AddCategoryComponent } from './pages/category/add-category/add-category
 import { FormsModule } from '@angular/forms';
 import { ListCategoryComponent } from './pages/category/list-category/list-category.component';
 import { EditCategoryComponent } from './pages/category/edit-category/edit-category.component'; // ✅ ✅ ✅ ye zaruri hai!
+import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -37,13 +40,17 @@ import { EditCategoryComponent } from './pages/category/edit-category/edit-categ
     FinancialReportComponent,
     AddCategoryComponent,
     ListCategoryComponent,
-    EditCategoryComponent
+    EditCategoryComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

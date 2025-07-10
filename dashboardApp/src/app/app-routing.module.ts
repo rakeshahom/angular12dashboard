@@ -11,9 +11,15 @@ import { FinancialReportComponent } from './pages/reports/financial-report/finan
 import { AddCategoryComponent } from './pages/category/add-category/add-category.component';
 import { ListCategoryComponent } from './pages/category/list-category/list-category.component';
 import { EditCategoryComponent } from './pages/category/edit-category/edit-category.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
+   { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'dashboard', component: DashboardComponent,canActivate: [AuthGuard] },
   { path: 'users', component: UsersComponent },
  
   { path: 'settings', component: SettingsComponent },

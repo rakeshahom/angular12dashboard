@@ -1,11 +1,12 @@
-<app-header (sidebarToggle)="toggleSidebar()"></app-header>
+<app-header *ngIf="!isLoginPage" (sidebarToggle)="toggleSidebar()"></app-header>
 
 <div class="layout" [class.sidebar-collapsed]="isSidebarCollapsed">
-  <app-sidebar></app-sidebar>
 
-  <main class="content-area">
+  <app-sidebar *ngIf="!isLoginPage"></app-sidebar>
+
+  <main class="content-area" [class.full-page]="isLoginPage">
     <router-outlet></router-outlet>
   </main>
 </div>
 
-<app-footer></app-footer>
+<app-footer *ngIf="!isLoginPage"></app-footer>

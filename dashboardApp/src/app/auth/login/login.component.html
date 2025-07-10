@@ -1,0 +1,15 @@
+<div class="login-page-wrapper">
+  <div class="login-card">
+    <h2>Admin Login</h2>
+
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+      <label>Email</label>
+      <input type="email" name="email" [(ngModel)]="email" required>
+
+      <label>Password</label>
+      <input type="password" name="password" [(ngModel)]="password" required>
+
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</div>
