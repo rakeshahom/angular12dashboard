@@ -1,0 +1,35 @@
+<div class="dashboard-container">
+  <h2 class="dashboard-heading">Dashboard</h2>
+
+  <div class="dashboard-cards">
+    <div class="card" routerLink="/users">
+      <div class="card-icon">
+        <fa-icon [icon]="['fas', 'users']"></fa-icon>
+      </div>
+      <div class="card-content">
+        <h3>Total Users</h3>
+        <p>{{ totalUsers }}</p>
+      </div>
+    </div>
+
+    <div class="card" routerLink="/categories">
+      <div class="card-icon">
+        <fa-icon [icon]="['fas', 'folder']"></fa-icon>
+      </div>
+      <div class="card-content">
+        <h3>Total Categories</h3>
+        <p>{{ totalCategories }}</p>
+      </div>
+    </div>
+
+    <div class="card" routerLink="/reports">
+      <div class="card-icon">
+        <fa-icon [icon]="['fas', 'chart-line']"></fa-icon>
+      </div>
+      <div class="card-content">
+        <h3>Total Reports</h3>
+        <p>{{ totalReports }}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="header-left">
+  <h1>Admin Dashboard</h1>
+  <button (click)="toggleSidebar()" class="toggle-btn">
+    ☰
+  </button>
+</div>
+
+<div class="header-right">
+  <fa-icon 
+    [icon]="faUserCircle"
+    class="profile-icon"
+    (click)="toggleMenu()">
+  </fa-icon>
+
+  <div class="profile-menu" *ngIf="showMenu">
+    <ul>
+      <li routerLink="/profile"><i class="fa fa-user"></i> Profile</li>
+      <li (click)="logout()">Logout</li>
+    </ul>
+  </div>
+</div>
