@@ -4,16 +4,13 @@
 
     <form (ngSubmit)="onRegister()" #registerForm="ngForm">
       <label>Name</label>
-      <input type="text" name="name" [(ngModel)]="name" required>
-
-      <label>Mobile</label>
-      <input type="text" name="mobile" [(ngModel)]="mobile" required>
+      <input type="text" name="name" [(ngModel)]="registerData.name" required>
 
       <label>Email</label>
-      <input type="email" name="email" [(ngModel)]="email" required>
+      <input type="email" name="email" [(ngModel)]="registerData.email" required>
 
       <label>Password</label>
-      <input type="password" name="password" [(ngModel)]="password" required>
+      <input type="password" name="password" [(ngModel)]="registerData.password" required>
 
       <button type="submit">Register</button>
     </form>

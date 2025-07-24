@@ -16,5 +16,6 @@
       Don't have an account?
       <a routerLink="/register">Register here</a>
     </p>
+    <div *ngIf="errorMessage" style="color:red">{{ errorMessage }}</div>
   </div>
 </div>

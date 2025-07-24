@@ -30,26 +30,28 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
       { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
 
-      { path: 'users', component: UsersComponent,canActivate: [AuthGuard] },
-      { path: 'settings', component: SettingsComponent,canActivate: [AuthGuard] },
+      { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
+      { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
       {
         path: 'category',
         component: CategoryComponent,
         children: [
-          { path: 'add', component: AddCategoryComponent ,canActivate: [AuthGuard]},
-          { path: 'list', component: ListCategoryComponent ,canActivate: [AuthGuard]},
-          { path: 'edit/:id', component: EditCategoryComponent ,canActivate: [AuthGuard]},
+          { path: 'add', component: AddCategoryComponent, canActivate: [AuthGuard] },
+          { path: 'list', component: ListCategoryComponent, canActivate: [AuthGuard] },
+          { path: 'edit/:id', component: EditCategoryComponent, canActivate: [AuthGuard] },
           { path: '', redirectTo: 'list', pathMatch: 'full' }
         ]
       },
+     
+
       {
         path: 'reports',
         component: ReportsComponent,
         children: [
-          { path: 'sales', component: SalesReportComponent,canActivate: [AuthGuard] },
-          { path: 'user', component: UserReportComponent ,canActivate: [AuthGuard]},
-          { path: 'financial', component: FinancialReportComponent ,canActivate: [AuthGuard]},
-          { path: '', redirectTo: 'sales', pathMatch: 'full' }
+          { path: 'sales', component: SalesReportComponent, canActivate: [AuthGuard] },
+          { path: 'user', component: UserReportComponent, canActivate: [AuthGuard] },
+          { path: 'financial', component: FinancialReportComponent, canActivate: [AuthGuard] },
+          { path: '', redirectTo: 'list', pathMatch: 'full' }
         ]
       }
     ]

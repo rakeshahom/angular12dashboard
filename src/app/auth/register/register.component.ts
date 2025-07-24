@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -8,33 +9,36 @@ import Swal from 'sweetalert2';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  name = '';
-  mobile = '';
-  email = '';
-  password = '';
+  registerData = {
+    name: '',
+    email: '',
+    password: '',
+    roles: [{ id: 2 }] // 👈 Default role
+  };
 
-  constructor(private router: Router) {}
+
+  constructor(private authService: AuthService, private router: Router) {}
 
   onRegister() {
-    if (this.name && this.mobile && this.email && this.password) {
-      // ✅ Example: Dummy save
-      localStorage.setItem('user', JSON.stringify({
-        name: this.name,
-        mobile: this.mobile,
-        email: this.email
-      }));
-
-      Swal.fire({
-        icon: 'success',
-        title: 'Registration Successful!'
-      }).then(() => {
-        this.router.navigate(['/login']);
-      });
-    } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Please fill all fields'
-      });
-    }
+    this.authService.register(this.registerData).subscribe({
+      next: (res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Registered Successfully!',
+          text: res.message || 'You can now login.',
+          confirmButtonText: 'Go to Login'
+        }).then(() => {
+          this.router.navigate(['/login']); // redirect after success
+        });
+      },
+      error: (err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Registration Failed!',
+          text: err.error?.message || 'Something went wrong. Please try again.',
+          confirmButtonText: 'OK'
+        });
+      }
+    });
   }
 }

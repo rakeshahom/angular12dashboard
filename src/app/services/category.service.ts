@@ -5,11 +5,9 @@ import { HttpClient } from '@angular/common/http'; // ✅ HttpClient import
 @Injectable({
   providedIn: 'root'
 })
-@Injectable({
-  providedIn: 'root'
-})
 export class CategoryService {
   private baseUrl = 'http://localhost:5000'; // ✅ Mock JSON server
+  name: any;
 
   constructor(private http: HttpClient) {}  // ✅ Ek hi constructor
 

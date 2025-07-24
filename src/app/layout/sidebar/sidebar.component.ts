@@ -7,12 +7,13 @@ import { faTachometerAlt, faUsers, faChartLine, faCog, faFolder, faDollarSign, f
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+  [x: string]: any;
 
   constructor() { }
 
   ngOnInit(): void {
   }
- faTachometerAlt = faTachometerAlt;
+  faTachometerAlt = faTachometerAlt;
   faUsers = faUsers;
   faChartLine = faChartLine;
   faCog = faCog;
@@ -20,7 +21,7 @@ export class SidebarComponent implements OnInit {
   faDollarSign = faDollarSign;
   faUser = faUser;
   faFileInvoiceDollar = faFileInvoiceDollar;
- 
+
   faList = faList;
   faPlus = faPlus;
 
@@ -29,9 +30,13 @@ export class SidebarComponent implements OnInit {
   toggleCategory() {
     this.showCategory = !this.showCategory;
   }
-  showReports = false;
+  showReport = false;
 
   toggleReports() {
-    this.showReports = !this.showReports;
+    this.showReport = !this.showReport;
+  }
+  showProduct = false;
+  toggleProduct() {
+    this.showProduct = !this.showProduct;
   }
 }

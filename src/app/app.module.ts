@@ -20,11 +20,16 @@ import { AddCategoryComponent } from './pages/category/add-category/add-category
 import { FormsModule } from '@angular/forms';
 import { ListCategoryComponent } from './pages/category/list-category/list-category.component';
 import { EditCategoryComponent } from './pages/category/edit-category/edit-category.component'; // ✅ ✅ ✅ ye zaruri hai!
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { AuthInterceptor } from './services/auth.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -46,17 +51,25 @@ import { ProfileComponent } from './pages/profile/profile.component';
     LoginComponent,
     RegisterComponent,
     MainLayoutComponent,
-    ProfileComponent
+    ProfileComponent,
+    
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule,
     FormsModule,
-    HttpClientModule
-
+    HttpClientModule,
+    FontAwesomeModule,
+     BrowserAnimationsModule,
+    MatSlideToggleModule,
+    MatTooltipModule
   ],
-  providers: [],
+  providers: [{
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

@@ -10,35 +10,51 @@
         <fa-icon [icon]="faUsers"></fa-icon> Users
       </a>
     </li>
-    
+
     <li>
       <a routerLink="/settings" routerLinkActive="active">
         <fa-icon [icon]="faCog"></fa-icon> Settings
       </a>
     </li>
     <li>
-  <div (click)="toggleCategory()" class="parent-link">
-    <fa-icon [icon]="faFolder"></fa-icon> Category
-  </div>
-  <ul *ngIf="showCategory">
-    <li>
-      <a routerLink="/category/list" routerLinkActive="active">
-        <fa-icon [icon]="faList"></fa-icon> Category List
-      </a>
+      <div (click)="toggleCategory()" class="parent-link">
+        <fa-icon [icon]="faFolder"></fa-icon> Category
+      </div>
+      <ul *ngIf="showCategory">
+        <li>
+          <a routerLink="/category/list" routerLinkActive="active">
+            <fa-icon [icon]="faList"></fa-icon> Category List
+          </a>
+        </li>
+        <li>
+          <a routerLink="/category/add" routerLinkActive="active">
+            <fa-icon [icon]="faPlus"></fa-icon> Add Category
+          </a>
+        </li>
+      </ul>
     </li>
     <li>
-      <a routerLink="/category/add" routerLinkActive="active">
-        <fa-icon [icon]="faPlus"></fa-icon> Add Category
-      </a>
+      <div (click)="toggleProduct()" class="parent-link">
+        <fa-icon [icon]="faFolder"></fa-icon> Product
+      </div>
+      <ul *ngIf="showProduct">
+        <li>
+          <a routerLink="/products/list" routerLinkActive="active">
+            <fa-icon [icon]="faList"></fa-icon> Product List
+          </a>
+        </li>
+        <li>
+          <a routerLink="/products/add" routerLinkActive="active">
+            <fa-icon [icon]="faPlus"></fa-icon> Add Product
+          </a>
+        </li>
+      </ul>
     </li>
-  </ul>
-</li>
-
     <li>
       <div (click)="toggleReports()" class="parent-link">
         <fa-icon [icon]="faChartLine"></fa-icon> Reports
       </div>
-      <ul *ngIf="showReports">
+      <ul *ngIf="showReport">
         <li>
           <a routerLink="/reports/sales" routerLinkActive="active">
             <fa-icon [icon]="faDollarSign"></fa-icon> Sales Report
